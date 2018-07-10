@@ -9,7 +9,7 @@
           </div>
         </div>
       </div>
-    <span class="docs-trans docs-demo__triangle" @click="toggle">{{isExpand ? '隐藏代码' : '显示代码'}}</span>
+    <span class="docs-trans docs-demo-triangle" @click="toggle">{{isExpand ? '隐藏代码' : '显示代码'}}</span>
   </div>
 </template>
 
@@ -60,21 +60,21 @@
     background-color: #FAFBFC;
   }
 
-  .docs-demo__code,
+  .docs-demo-code,
   .highlight-wrapper,
-  .docs-demo__meta {
+  .docs-demo-meta {
     padding: 0 20px;
     overflow-y: auto;
   }
 
-  .docs-demo__code {
+  .docs-demo-code {
     border-bottom: 1px solid #eee;
   }
-  .docs-demo.docs-demo--expand .docs-demo__meta {
+  .docs-demo.docs-demo--expand .docs-demo-meta {
     border-bottom: 1px dashed #e9e9e9;
   }
 
-  .docs-demo.docs-demo--expand .docs-demo__triangle {
+  .docs-demo.docs-demo--expand .docs-demo-triangle {
     transform: rotate(180deg);
   }
 
@@ -95,12 +95,12 @@
     display: block;
   }
 
-  .docs-demo__code__mobi {
+  .docs-demo-code-mobi {
     height: 620px;
     margin: 20px 0;
   }
 
-  .docs-demo__code__mobi__header {
+  .docs-demo-code-mobi-header {
     border-radius: 4px 4px 0 0;
     background: -webkit-linear-gradient(rgba(55,55,55,.98),#545456);
     background: linear-gradient(rgba(55,55,55,.98),#545456);
@@ -124,7 +124,7 @@
     }
   }
 
-  .docs-demo__code__mobi__content {
+  .docs-demo-code-mobi-content {
     iframe {
       width: 100%;
       border: 0;

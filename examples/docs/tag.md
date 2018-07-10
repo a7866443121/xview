@@ -1,5 +1,5 @@
 <style>
-  .w__tag{
+  .w-tag{
     margin-right: 10px;
   }
 </style>

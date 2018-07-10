@@ -3,13 +3,13 @@
     <textarea
       @input="handleInput"
       v-bind="$props"
-      class="w__limit--textarea"
-      :class="{'w__limit-over': isOver}"
+      class="w-limit--textarea"
+      :class="{'w-limit-over': isOver}"
       :value="currentValue"
       >
     </textarea>
-    <span class="w__limit--text">
-      {{isOver ? '已超出' : '还可以输入'}}<span class="w__limit--num" :class="{'w__limit--num-over': isOver}">{{num}}</span>个字
+    <span class="w-limit--text">
+      {{isOver ? '已超出' : '还可以输入'}}<span class="w-limit--num" :class="{'w-limit--num-over': isOver}">{{num}}</span>个字
     </span>
   </div>
 </template>

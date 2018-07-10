@@ -2,31 +2,31 @@
  * @author monkeywang
  * Date: 17/11/9
  */
-import WButton from './button/index.js';
-import WRow from './row/index';
-import WTag from './tag/index';
-import WShowMore from './show-more/index';
-import WLimitTextArea from './limit-textarea/index';
+import xButton from './button/index.js';
+import xRow from './row/index';
+import xTag from './tag/index';
+import xShowMore from './show-more/index';
+import xLimitTextArea from './limit-textarea/index';
 import MetaInfo from './meta-info/index';
-import WAlert from './alert/index';
-import WLoadingBar from './loading-bar/index';
-import XShade from './shade/index';
+import xAlert from './alert/index';
+import xLoadingBar from './loading-bar/index';
+import xShade from './shade/index';
 
 const components = [
-  WButton,
-  WRow,
-  WTag,
-  WShowMore,
-  WLimitTextArea,
-  WAlert,
-  XShade
+  xButton,
+  xRow,
+  xTag,
+  xShowMore,
+  xLimitTextArea,
+  xAlert,
+  xShade
 ]
 
 const install = function(Vue) {
   if (install.installed) return
   components.map(component => Vue.component(component.name, component))
   MetaInfo.install(Vue)
-  Vue.prototype.$loading = WLoadingBar
+  Vue.prototype.$loading = xLoadingBar
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
@@ -35,13 +35,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export default {
   install,
-  WButton,
-  WRow,
-  WTag,
-  WShowMore,
-  WLimitTextArea,
+  xButton,
+  xRow,
+  xTag,
+  xShowMore,
+  xLimitTextArea,
   MetaInfo,
-  WAlert,
-  WLoadingBar,
-  XShade,
+  xAlert,
+  xLoadingBar,
+  xShade,
 }

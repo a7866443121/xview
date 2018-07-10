@@ -1,13 +1,13 @@
 <template>
-  <div class="w__loading-bar">
+  <div class="w-loading-bar">
     <div
-      class="w__loading-bar--bar"
-      :class="isError ? 'w__loading-bar--error' : ''"
+      class="w-loading-bar--bar"
+      :class="isError ? 'w-loading-bar--error' : ''"
       role="bar"
       :style="{transform: 'translate3d(-'+(100-totalProgress)+'%, 0, 0)'}">
-      <div class="w__loading-bar--peg"></div>
+      <div class="w-loading-bar--peg"></div>
     </div>
-    <div class="w__loading-bar--spinner" role="spinner" v-if="showSpinner">
+    <div class="w-loading-bar--spinner" role="spinner" v-if="showSpinner">
       <div class="spinner-icon" :class="isError ? 'spinner-icon--error' : ''"
            :style="{'animation': 'w-spinner 400ms '+easing+' infinite'}"></div>
     </div>

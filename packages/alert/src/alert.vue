@@ -3,17 +3,17 @@
     <div class="w-alert"
          :class="[ typeClass, {'is-center': center} ]"
          v-show="visible">
-      <i class="w-alert__icon"
+      <i class="w-alert-icon"
          :class="[ iconClass, isBigIcon ]"
          v-if="showIcon"></i>
-      <div class="w-alert__content">
-        <span class="w-alert__title"
+      <div class="w-alert-content">
+        <span class="w-alert-title"
               :class="isBoldTitle"
               style="">{{this.title}}</span>
-        <p class="w-alert__description"
+        <p class="w-alert-description"
            v-if="description">{{description}}</p>
         <i v-if="closable"
-           class="w-alert__closebtn"
+           class="w-alert-closebtn"
            :class="[ closeText ? 'is-customed' : 'w-icon-close2']"
            @click="close">{{closeText}}</i>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <span class="w__show-more">
+  <span class="w-show-more">
     <span>{{text | filterText(textLen)}}</span>
     <a @click="showMore" v-if="textLen !== -1 && textLen < text.length">{{showText}}</a>
     <a @click="showMore" v-if="textLen !== -1 && textLen === text.length && allowFold">{{hiddenText}}</a>

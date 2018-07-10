@@ -1,6 +1,6 @@
 <template>
   <div 
-  	class="x__shade" 
+  	class="x-shade" 
   	:style="{
   		zIndex: zIndex[0]
   	}"
