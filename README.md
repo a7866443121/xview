@@ -1,16 +1,16 @@
 <p align="center">
   <a href="https://at.aotu.io/">
-    <img width="200" src="https://github.com/VV-UI/VV-UI/blob/master/examples/assets/img/logo.png">
+    <img width="200" src="./static/img/logo.png">
   </a>
 </p>
 
 # 公告
-这个 `UI`库的核心想法是想练习搭建一个基于`Vue`的组件库。这个组件库目前是由我一个人维护开发，不建议使用到生产环境，如果有兴趣，可以`fork`下来作为自己技术探索的一个部分。感谢大家的支持。
+这个 `UI`库的核心想法是一个基于`Vue`的功能组件库。更少的css,更多的功能。这个组件库目前是由我一个人维护开发，不建议使用到生产环境，如果有兴趣，可以`fork`下来作为自己技术探索的一个部分。感谢大家的支持。
 
-# VV UI
+# xview
 
-`VV-UI` 是一款基于 `Vue.js 2.0` 的前端 UI 组件库，主要用于快速开发 PC 网站中后台产品
-//[演示地址](https://vv-ui.github.io/VV-UI)
+`xview` 是一款基于 `Vue.js 2.0` 的前端 UI 组件库，主要用于快速开发 PC 网站中后台产品
+//[演示地址](https://localhost:8080)
 
 <p align="center">
   <a href="https://github.com/feross/standard">
@@ -47,12 +47,12 @@ npm install xview --save
 import xview from 'xview' // 引入组件库
 import 'xview/packages/theme-default/lib/index.css' // 引入样式库
 
-Vue.use(VvUI)
+Vue.use(xview)
 ```
 
 ## 贡献
 
-如果你在使用 `xview` 时遇到问题，或者有好的建议，欢迎给我们提 [Issue](https://github.com/VV-UI/VV-UI/issues) 或 [Pull Request](https://github.com/VV-UI/VV-UI/pulls)
+如果你在使用 `xview` 时遇到问题，或者有好的建议，欢迎给我们提 [Issue](https://github.com/xview/xview/issues) 或 [Pull Request](https://github.com/xview/xview/pulls)
 
 
 ## Pull requests 规范

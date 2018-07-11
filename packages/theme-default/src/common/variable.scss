@@ -9,27 +9,38 @@
     $fs-small: 11px;
     $fs-small-s: 10px;
 
-// 颜色定义规范
-    //主要(浅蓝),帮助, 
-    $color-primary: #1E88F5;
+    // 颜色定义规范
     //红
-    $color-assist: #E93A0E;
-    //浅灰
-    $color-assist-1: #EEF1F6;
-    //橙色
-    $color-assist-2: #F8800A;
-    //更浅的灰色
-    $color-assist-3: #F5F5F5;
-    //更更浅的灰色
-    $color-assist-4: #F8F8F8;
-    //错误(绿色),警告,一般提示信息、成功
-    $color-success: #13ce66;
-    //橘色
-    $color-warning: #f7ba2a;
-    //浅红
-    $color-danger: #ff4949;
+    $color-danger: #ff6666;
+    //
+    $color-danger1: #ff3333;
+    //更深红
+    $color-danger2: #ff0000;
+    
+    //蓝, 
+    $color-primary: #1E88F5;
     //浅蓝
-    $color-info: #50bfff;
+    $color-primary1: #50bfff;
+    //深蓝
+    $color-primary2: #0066ff;
+    
+    //浅灰
+    $color-gray: #EEF1F6;
+    //更浅的灰色
+    $color-gray1: #F5F5F5;
+    //更更浅的灰色
+    $color-gray2: #F8F8F8;
+    
+    //橙色
+    $color-warning1: #F8800A;
+    //更浅的橙色
+    $color-warning: #f7ba2a;
+    
+    //绿色
+    $color-success: #33cc33;
+    //更深的绿色
+    $color-success1: #339933;
+    
 //边框色
     $color-border: #E0E5EE;
     $color-border-1: #D5D5D5;

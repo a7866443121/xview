@@ -1,17 +1,81 @@
+<style lang="less">
+	.x-button{
+		margin:10px;
+	}
+</style>
+<script>
+ export default {
+    methods: {
+      click(e) {
+        alert('点击会传回当前点击的事件对象:' + e);
+      }
+    }
+  }
+</script>
 # Button 按钮
 ----
 ### 基础用法
-只有一个 Button 的样式。
+使用```type```、```radius```和```round```属性来定义 Button 的样式。
 
 <div class="demo-block">
-    <x-button>一个按钮</x-button>
+	<div>
+		<x-button @click=click($event)>默认按钮</x-button>
+		<x-button @click=click($event) type="plain">朴素按钮</x-button>
+		<x-button @click=click($event) type="primary">主要按钮</x-button>
+		<x-button @click=click($event) type="success">成功按钮</x-button>
+		<x-button @click=click($event) type="info">信息按钮</x-button>
+		<x-button @click=click($event) type="warning">警告按钮</x-button>
+		<x-button @click=click($event) type="danger">危险按钮</x-button>
+	</div>
+	<div>
+		<x-button @click=click($event) radius>默认按钮</x-button>
+		<x-button @click=click($event) type="plain" radius>朴素按钮</x-button>
+	    <x-button @click=click($event) type="primary" radius>主要按钮</x-button>
+	    <x-button @click=click($event) type="success" radius>成功按钮</x-button>
+	    <x-button @click=click($event) type="info" radius>信息按钮</x-button>
+	    <x-button @click=click($event) type="warning" radius>警告按钮</x-button>
+	    <x-button @click=click($event) type="danger" radius>危险按钮</x-button>
+	</div>
+	<div>
+		<x-button @click=click($event) round>默认按钮</x-button>
+		<x-button @click=click($event) type="plain" round>朴素按钮</x-button>
+	    <x-button @click=click($event) type="primary" round>主要按钮</x-button>
+	    <x-button @click=click($event) type="success" round>成功按钮</x-button>
+	    <x-button @click=click($event) type="info" round>信息按钮</x-button>
+	    <x-button @click=click($event) type="warning" round>警告按钮</x-button>
+	    <x-button @click=click($event) type="danger" round>危险按钮</x-button>
+	</div>
 </div>
 
 ::: demo
 ```html
 
 <div>
-  <x-button>一个按钮</x-button>
+	<x-button>默认按钮</x-button>
+	<x-button type="plain">朴素按钮</x-button>
+	<x-button type="primary">主要按钮</x-button>
+	<x-button type="success">成功按钮</x-button>
+	<x-button type="info">信息按钮</x-button>
+	<x-button type="warning">警告按钮</x-button>
+	<x-button type="danger">危险按钮</x-button>
+</div>
+<div>
+	<x-button radius>默认按钮</x-button>
+	<x-button type="plain" radius>朴素按钮</x-button>
+	<x-button type="primary" radius>主要按钮</x-button>
+	<x-button type="success" radius>成功按钮</x-button>
+	<x-button type="info" radius>信息按钮</x-button>
+	<x-button type="warning" radius>警告按钮</x-button>
+	<x-button type="danger" radius>危险按钮</x-button>
+</div>
+<div>
+	<x-button round>默认按钮</x-button>
+	<x-button type="plain" round>朴素按钮</x-button>
+	<x-button type="primary" round>主要按钮</x-button>
+	<x-button type="success" round>成功按钮</x-button>
+	<x-button type="info" round>信息按钮</x-button>
+	<x-button type="warning" round>警告按钮</x-button>
+	<x-button type="danger" round>危险按钮</x-button>
 </div>
 
 ```
@@ -19,19 +83,67 @@
 
 ### 禁用状态
 
-按钮不可用状态。
+使用```disabled```来定义 Button 是否可用。
 
 <div class="demo-block">
-  <div>
-    <x-button class="disabled">被禁用的按钮</x-button>
-  </div>
+	<div>
+		<x-button disabled>默认按钮</x-button>
+		<x-button type="plain" disabled>朴素按钮</x-button>
+		<x-button type="primary" disabled>主要按钮</x-button>
+		<x-button type="success" disabled>成功按钮</x-button>
+		<x-button type="info" disabled>信息按钮</x-button>
+		<x-button type="warning" disabled>警告按钮</x-button>
+		<x-button type="danger" disabled>危险按钮</x-button>
+	</div>
+	<div>
+		<x-button radius disabled>默认按钮</x-button>
+		<x-button type="plain" radius disabled>朴素按钮</x-button>
+		<x-button type="primary" radius disabled>主要按钮</x-button>
+		<x-button type="success" radius disabled>成功按钮</x-button>
+		<x-button type="info" radius disabled>信息按钮</x-button>
+		<x-button type="warning" radius disabled>警告按钮</x-button>
+		<x-button type="danger" radius disabled>危险按钮</x-button>
+	</div>
+	<div>
+		<x-button round disabled>默认按钮</x-button>
+		<x-button type="plain" round disabled>朴素按钮</x-button>
+		<x-button type="primary" round disabled>主要按钮</x-button>
+		<x-button type="success" round disabled>成功按钮</x-button>
+		<x-button type="info" round disabled>信息按钮</x-button>
+		<x-button type="warning" round disabled>警告按钮</x-button>
+		<x-button type="danger" round disabled>危险按钮</x-button>
+	</div>
 </div>
 
 ::: demo
 ```html
 
 <div>
-  <x-button class="disabled">被禁用的按钮</x-button>
+	<x-button disabled>默认按钮</x-button>
+	<x-button type="plain" disabled>朴素按钮</x-button>
+	<x-button type="primary" disabled>主要按钮</x-button>
+	<x-button type="success" disabled>成功按钮</x-button>
+	<x-button type="info" disabled>信息按钮</x-button>
+	<x-button type="warning" disabled>警告按钮</x-button>
+	<x-button type="danger" disabled>危险按钮</x-button>
+</div>
+<div>
+	<x-button radius disabled>默认按钮</x-button>
+	<x-button type="plain" radius disabled>朴素按钮</x-button>
+	<x-button type="primary" radius disabled>主要按钮</x-button>
+	<x-button type="success" radius disabled>成功按钮</x-button>
+	<x-button type="info" radius disabled>信息按钮</x-button>
+	<x-button type="warning" radius disabled>警告按钮</x-button>
+	<x-button type="danger" radius disabled>危险按钮</x-button>
+</div>
+<div>
+	<x-button round disabled>默认按钮</x-button>
+	<x-button type="plain" round disabled>朴素按钮</x-button>
+	<x-button type="primary" round disabled>主要按钮</x-button>
+	<x-button type="success" round disabled>成功按钮</x-button>
+	<x-button type="info" round disabled>信息按钮</x-button>
+	<x-button type="warning" round disabled>警告按钮</x-button>
+	<x-button type="danger" round disabled>危险按钮</x-button>
 </div>
 
   
@@ -41,25 +153,38 @@
 ### 图标按钮
 非多色的话图标建议使用unicode,当然足够的自主是必须的,symbol也随意
 <div class="demo-block">
-  <x-button><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button disabled><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button type="plain"><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button type="primary" round><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button type="success" radius><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button type="warning" radius><i class="iconfont">&#xe68b;</i>搜索</x-button>
+	<x-button type="danger" radius><i class="iconfont">&#xe68b;</i>搜索</x-button>
 </div>
 
 ::: demo
 ```html
 
+<x-button disabled><i class="iconfont">&#xe68b;</i>搜索</x-button>
 <x-button><i class="iconfont">&#xe68b;</i>搜索</x-button>
+<x-button type="plain"><i class="iconfont">&#xe68b;</i>搜索</x-button>
+<x-button type="primary" round><i class="iconfont">&#xe68b;</i>搜索</x-button>
+<x-button type="success" radius><i class="iconfont">&#xe68b;</i>搜索</x-button>
+<x-button type="warning" radius><i class="iconfont">&#xe68b;</i>搜索</x-button>
+<x-button type="danger" radius><i class="iconfont">&#xe68b;</i>搜索</x-button>
 
 ```
 :::
 
+### Attributes
+| 参数      | 说明    | 类型      | 可选值       | 默认值   |
+|---------- |-------- |---------- |-------------  |-------- |
+| type     | 类型   | string    | plain,primary,success,info,warning,danger |     —    |
+| round     | 圆端按钮  | Boolean    | — | false   |
+| radius  | 圆角按钮    | boolean   | —   | false   |
+| disabled  | 是否禁用状态    | boolean   | —   | false   |
 
-### 暴露的方法
-非多色的话图标建议使用unicode,当然足够的自主是必须的,symbol也随意
-
-::: demo
-```html
-
-@click="$emit('click')"
-
-```
-:::
+### Event
+| 事件名称      | 说明       | 回调参数   |
+|------------- |----------- |---------  |
+|click         |点击时触发的事件| events  |

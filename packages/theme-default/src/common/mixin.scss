@@ -132,9 +132,9 @@
 //边框相关
 //默认边框
 @mixin borderBase($height:1px,$style:solid,$color:#bfcbd9){
-    border: $height $style $color
+    border: $height $style $color;
 }
 //圆角边框
-@mixin borderRadius($radius:4px){
+@mixin borderRadius($radius:5px){
     border-radius: $radius;
 }
