@@ -1,7 +1,3 @@
-/**
- * @author monkeywang
- * Date: 17/11/14
- */
 import updateMetaInfo from './src/metaOperate/updateMetaInfo'
 import {VUE_META_KEY_NAME} from './src/common/constants'
 
