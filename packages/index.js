@@ -1,7 +1,3 @@
-/**
- * @author monkeywang
- * Date: 17/11/9
- */
 import xButton from './button/index.js';
 import xRow from './row/index';
 import xTag from './tag/index';
