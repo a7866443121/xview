@@ -1,17 +1,17 @@
 {
-  "name": "vv-ui-theme-default",
+  "name": "xview",
   "version": "1.0.0",
-  "description": "vv-ui component default theme.",
+  "description": "xview component default theme.",
   "main": "lib/index.css",
   "scripts": {
     "dev": "gulp build && gulp watch",
     "build": "gulp build"
   },
   "keywords": [
-    "vv-ui",
+    "xview",
     "theme"
   ],
-  "author": "monkeywang",
+  "author": "xview",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",

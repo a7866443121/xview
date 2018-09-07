@@ -1,4 +1,4 @@
-<style lang="less" type="text/less">
+<style lang="scss">
   .side-nav{
     display: inline-block;
     margin: 32px 0;

@@ -1,6 +1,5 @@
 <template>
   <button
-    @click="click($event)"
     class="x-button" 
     :disabled="disabled" 
     :class="[
@@ -32,9 +31,6 @@
       return {}
     },
     methods: {
-    	click(e){		    		
-    		this.$emit('click',e);
-    	}
     }
   }
 </script>

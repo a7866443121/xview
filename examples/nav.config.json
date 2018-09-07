@@ -63,11 +63,6 @@
           "path": "/limit"
         },
         {
-          "desc": "metaInfo 三要素",
-          "name": "meta-info",
-          "path": "/meta-info"
-        },
-        {
           "desc": "alert 警告",
           "name": "alert",
           "path": "/alert"

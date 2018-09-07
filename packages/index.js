@@ -3,7 +3,6 @@ import xRow from './row/index';
 import xTag from './tag/index';
 import xShowMore from './show-more/index';
 import xLimitTextArea from './limit-textarea/index';
-import MetaInfo from './meta-info/index';
 import xAlert from './alert/index';
 import xLoadingBar from './loading-bar/index';
 import xShade from './shade/index';
@@ -15,16 +14,16 @@ const components = [
   xShowMore,
   xLimitTextArea,
   xAlert,
-  xShade
 ]
-
 const install = function(Vue) {
   if (install.installed) return
-  components.map(component => Vue.component(component.name, component))
-  MetaInfo.install(Vue)
-  Vue.prototype.$loading = xLoadingBar
+  //注册组件
+  components.map(component => Vue.component(component.name, component));
+  //注册loading
+  Vue.prototype.$loading = xLoadingBar;
+  //注册蒙版
+Vue.prototype.$shade = xShade;
 }
-
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
@@ -36,8 +35,7 @@ export default {
   xTag,
   xShowMore,
   xLimitTextArea,
-  MetaInfo,
   xAlert,
   xLoadingBar,
-  xShade,
+xShade,
 }

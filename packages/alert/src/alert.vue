@@ -1,20 +1,20 @@
 <template>
-  <transition name="w-alert-fade">
-    <div class="w-alert"
+  <transition name="x-alert-fade">
+    <div class="x-alert"
          :class="[ typeClass, {'is-center': center} ]"
          v-show="visible">
-      <i class="w-alert-icon"
+      <i class="x-alert-icon"
          :class="[ iconClass, isBigIcon ]"
          v-if="showIcon"></i>
-      <div class="w-alert-content">
-        <span class="w-alert-title"
+      <div class="x-alert-content">
+        <span class="x-alert-title"
               :class="isBoldTitle"
               style="">{{this.title}}</span>
-        <p class="w-alert-description"
+        <p class="x-alert-description"
            v-if="description">{{description}}</p>
         <i v-if="closable"
-           class="w-alert-closebtn"
-           :class="[ closeText ? 'is-customed' : 'w-icon-close2']"
+           class="x-alert-closebtn"
+           :class="[ closeText ? 'is-customed' : 'x-icon-close2']"
            @click="close">{{closeText}}</i>
       </div>
     </div>
@@ -75,12 +75,12 @@ export default {
   },
   computed: {
     typeClass() {
-      return `w-alert--${this.type}`;
+      return `x-alert-${this.type}`;
     },
     iconClass() {
       //暂无对应图标
-      // return `w-icon--${this.type}`
-      return "w-icon-fav";
+      // return `x-icon--${this.type}`
+      return "icon-bell";
     },
     isBoldTitle() {
       return this.description ? "is-bold" : "";

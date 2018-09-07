@@ -1,14 +1,14 @@
 <template>
-  <span class="w-show-more">
+  <span class="x-show-more">
     <span>{{text | filterText(textLen)}}</span>
-    <a @click="showMore" v-if="textLen !== -1 && textLen < text.length">{{showText}}</a>
-    <a @click="showMore" v-if="textLen !== -1 && textLen === text.length && allowFold">{{hiddenText}}</a>
+    <a class="x-link" @click="showMore" v-if="textLen !== -1 && textLen < text.length">{{showText}}</a>
+    <a class="x-link" @click="showMore" v-if="textLen !== -1 && textLen === text.length && allowFold">{{hiddenText}}</a>
   </span>
 </template>
 
 <script>
   export default {
-    name: 'WShowmore',
+    name: 'xShowmore',
     props: {
       len: {
         type: Number,

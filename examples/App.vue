@@ -41,8 +41,8 @@
   }
 </script>
 
-<style lang="less" type="text/less">
-  @import "./assets/less/index";
+<style lang="scss">
+  @import "./assets/scss/index.scss";
 
   .container {
     margin: 48px auto;
@@ -55,7 +55,7 @@
     }
     .view {
       float: left;
-      width: calc(~'100% - 215px');
+      width: calc(100% - 215px);
       padding: 32px 48px 48px;
       box-sizing: border-box;
     }

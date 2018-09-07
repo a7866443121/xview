@@ -9,7 +9,7 @@
     }
   }
 </script>
-<style lang="less">
+<style lang="scss">
   .demo-icon .source > i {
     font-size: 24px;
     color: #8492a6;
@@ -22,14 +22,14 @@
     margin: 0 20px;
   }
 
-  .icon-list {
+  .iconfont-list {
     overflow: hidden;
     list-style: none;
     padding: 0;
     border: solid 1px #eaeefb;
     border-radius: 4px;
   }
-  .icon-list li {
+  .iconfont-list li {
     float: left;
     width: 16.66%;
     text-align: center;
@@ -37,7 +37,8 @@
     line-height: 120px;
     color: #666;
     font-size: 13px;
-    transition: color .15s linear;
+    transition: all .3s;
+    cursor: pointer;
 
     border-right: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -48,17 +49,20 @@
       line-height: normal;
       vertical-align: middle;
       font-family: 'Helvetica Neue',Helvetica,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',SimSun,sans-serif;
-      color: #99a9bf;
     }
     i {
       display: block;
       font-size: 32px;
       margin-bottom: 15px;
-      color: #3f536e;
+      transition: all .2s;
     }
-    &:hover {
-      color: rgb(92, 182, 255);
-    }
+    &:hover{
+    	color: rgb(80,80,80);
+    	box-shadow:0px 2px 8px 0px rgba(0,0,0,0.1);
+	    i{
+	      font-size: 36px;
+	    }
+    } 
   }
 </style>
 
@@ -68,33 +72,33 @@
 语义化的矢量图形，```xview``` 使用开源的 Iconfont (阿里妈妈MUX倾力打造的矢量图标管理、交流平台) 作为图标库，并制作成了 ```icon font```。
 ### 如何使用
 
-使用 ```class="icon"``` 来声明图标，具体图标的名称请 ```copy``` 相应的标签
+使用 ```class="icon-XXX"``` 来声明图标，具体图标的名称请 ```copy``` 相应的标签
 
 <div class="demo-block">
-  <i class="w-icon-close fs-24"></i>
-  <i class="w-icon-link fs-24"></i>
-  <i class="w-icon-tag fs-24"></i>
-  <i class="w-icon-smile fs-24"></i>
+  <i class="icon-alarm fs-24"></i>
+  <i class="icon-android fs-24"></i>
+  <i class="icon-apple fs-24"></i>
+  <i class="icon-cog fs-24"></i>
 </div>
 
 ::: demo
 ```html
 
-<i class="w-icon-close fs-24"></i>
-<i class="w-icon-link fs-24"></i>
-<i class="w-icon-tag fs-24"></i>
-<i class="w-icon-smile fs-24"></i>
+  <i class="icon-alarm fs-24"></i>
+  <i class="icon-android fs-24"></i>
+  <i class="icon-apple fs-24"></i>
+  <i class="icon-cog fs-24"></i>
 
 ```
 :::
 
 ### 图标示例
 
-<ul class="icon-list">
+<ul class="iconfont-list">
   <li v-for="name in icons" :key="name">
     <span>
-      <i :class="'w-' + name"></i>
-      {{'w-' + name}}
+      <i :class="name"></i>
+      {{name}}
     </span>
   </li>
 </ul>

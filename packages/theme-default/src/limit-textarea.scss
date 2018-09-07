@@ -1,39 +1,37 @@
 @import "./common/mixin.scss";
 @import "./common/var.scss";
-@b w{
-  @e limit {
-    @m textarea{
-      border: var(--limit-textarea-border);
+  .x-limit {
+    .x-limit-textarea{
+      @include borderBase(1px, solid, $color-border);  
       display: block;
       resize: vertical;
       padding: 5px 7px;
       line-height: 1.5;
       box-sizing: border-box;
       width: 100%;
-      font-size: var(--limit-textarea-font);
+      font-size: $fs-normal;
       color: var(--color-black);
       border-radius: 4px;
       outline: none;
       transition: border-color .2s cubic-bezier(.645,.045,.355,1);
       &:focus {
-         border: var(--limit-textarea-border-focus);
+         @include borderBase(1px, solid, $color-primary);  
       }
     }
-    @m over {
-      border: var(--limit-textarea-border-over)
+    .x-limit-over {
+      @include borderBase(1px, solid, $color-danger);  
     }
-    @m text {
+    .x-limit-text {
       position: absolute;
       bottom: 5px;
       right: 5px;
       font-size: 12px;
-      color: var(--color-base-gray);
+      color: $color-9;
     }
-    @m num {
-      color: var(--color-success);
+    .x-limit-num {
+      color: $color-success;
     }
-    @m num-over {
-      color: var(--color-danger);
+    .x-limit-num-over {
+      color: $color-danger;
     }
   }
-}
