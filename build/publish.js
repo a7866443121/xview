@@ -43,6 +43,6 @@ inquirer.prompt([{
   exec(cmd);
 
   console.log();
-  console.log(chalk.green(`   发布成功 ) `));
+  console.log(chalk.green(`发布成功 `));
   console.log();
 })

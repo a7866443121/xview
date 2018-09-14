@@ -6,6 +6,7 @@ import xLimitTextArea from './limit-textarea/index';
 import xAlert from './alert/index';
 import xLoadingBar from './loading-bar/index';
 import xShade from './shade/index';
+import MetaInfo from './meta-info/index';
 
 const components = [
   xButton,
@@ -37,5 +38,6 @@ export default {
   xLimitTextArea,
   xAlert,
   xLoadingBar,
-xShade,
+	xShade,
+	MetaInfo,
 }

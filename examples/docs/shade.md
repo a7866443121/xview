@@ -1,24 +1,27 @@
-# Alert 警告
+# Shade 遮罩|蒙版|浮层
 ----
-用于页面中展示重要的提示信息。
+用于页面中展示重要的提示信息或弹层的容器。
 
 ### 基本用法
-页面中的非浮层元素，不会自动消失。
+页面中的蒙版,挂载在body上,全局固定定位,宽高为100%。
 
 <div class="demo-block">
-	<x-button @click.native="showShade" type="primary">点击显示遮罩层</x-button>
+	<x-button @click.native="showShade" type="primary" radius>点击显示遮罩层</x-button>
 </div>
 
 <script>
   export default{
     mounted () {
-    
     },
     methods: {
-      showShade() {
-        this.$shade.show();
-      }
-    }
+	  	showShade() {
+      	var _this = this;
+        _this.$shade.show();
+        setTimeout(()=>{
+        	_this.$shade.hide();
+        },1000)
+	  	}
+    },    
   }
 </script>
 
@@ -26,9 +29,22 @@
 ```html
 
 <div>
-<x-button @click.native="showShade" type="primary">点击显示遮罩层</x-button>
+<x-button @click.native="showShade" type="primary" radius>点击显示遮罩层</x-button>
 </div>
-
+<script>
+export default{
+  mounted () {},
+  methods: {
+    showShade() {
+      var _this = this;
+      _this.$shade.show();
+      setTimeout(()=>{
+        _this.$shade.hide();
+      },1000)
+    }
+  },    
+}
+</script>
 
 ```
 :::

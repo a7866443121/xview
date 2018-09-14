@@ -47,16 +47,16 @@ export default {
       return {
         dynamicTags: [{
            name: '标签一',
-           color:'warning'
+           color:'primary'
         },{
            name: '标签二',
-           color: 'primary' 
-        }, {
-           name: '标签三',
            color: 'success' 
         }, {
+           name: '标签三',
+           color: 'info' 
+        }, {
            name: '标签四',
-           color: 'info'           
+           color: 'warning'           
         }, {
             name: '标签五',
             color: 'danger'
@@ -88,16 +88,16 @@ export default {
       return {
         dynamicTags: [{
            name: '标签一',
-           color:'warning'
+           color:'primary'
         },{
            name: '标签二',
-           color: 'primary' 
-        }, {
-           name: '标签三',
            color: 'success' 
         }, {
+           name: '标签三',
+           color: 'info' 
+        }, {
            name: '标签四',
-           color: 'info'           
+           color: 'warning'           
         }, {
             name: '标签五',
             color: 'danger'

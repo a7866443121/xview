@@ -78,6 +78,17 @@
           "path": "/loadingBar"
         }
       ]
+    },
+    {
+      "desc": "功能组件",
+      "path": "/component",
+      "items": [
+        {
+          "desc": "meta-info 三要素",
+          "name": "meta-info",
+          "path": "/meta-info"
+        }
+      ]
     }
   ]
 }

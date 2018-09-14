@@ -31,37 +31,35 @@
       border-color: $color-success2;
       color: $color-success;
       &:hover {
-        background-color: var(--tag-success-color);
-        color: var(--color-white);
+        background-color: $color-success;
+        color: $color-white;
       }
     }
     &.x-tag-primary {
-      background-color: var(--tag-primary-fill);
-      border-color: var(--tag-primary-border);
-      color: var(--tag-primary-color);
+      background-color: $color-primary2-hyaline;
+      border-color: $color-primary;
+      color: $color-primary;
       &:hover {
-        background-color: var(--tag-primary-color);
-        color: var(--color-white);
+        background-color: $color-primary-hyaline;
+        color: $color-white;
       }
     }
     &.x-tag-warning {
-      background-color: var(--tag-warning-fill);
-      border-color: var(--tag-warning-border);
-      color: var(--tag-warning-color);
-
+      background-color: $color-warning2-hyaline;
+      border-color: $color-warning1;
+      color: $color-warning1;
       &:hover {
-        background-color: var(--tag-warning-color);
-        color: var(--color-white);
+        background-color: $color-warning1;
+        color: $color-white;
       }
     }
      &.x-tag-danger {
-      background-color: var(--tag-danger-fill);
-      border-color: var(--tag-danger-border);
-      color: var(--tag-danger-color);
-
+      background-color: $color-danger2-hyaline;
+      border-color: $color-danger;
+      color: $color-danger;
       &:hover {
-        background-color: var(--tag-danger-color);
-        color: var(--color-white);
+        background-color: $color-danger;
+        color: $color-white;
       }
     }
     & .x-tag-close {
