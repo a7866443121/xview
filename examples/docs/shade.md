@@ -10,16 +10,24 @@
 </div>
 
 <script>
+  import button from '../../packages/button'
+  import Vue from 'vue'
   export default{
     mounted () {
-    },
+      },
     methods: {
-	  	showShade() {
-      	var _this = this;
-        _this.$shade.show();
-        setTimeout(()=>{
-        	_this.$shade.hide();
-        },1000)
+      showShade() {
+        var _this = this;
+        _this.$shade.show( Vue.component('icon', {
+            template: '<div>' +
+              '<div> <x-button @click.native="hideShade" type="primary" radius>点击隐藏遮罩层</x-button>' + 
+              '</div>',
+            methods: {
+              hideShade(){
+                _this.$shade.hide();
+              }
+            }
+        }));
 	  	}
     },    
   }

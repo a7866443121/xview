@@ -1,8 +1,8 @@
 <template>
   <transition name="x-fade">
-    <div class="x-tag" :class="'x-tag-'+color">
+    <div v-if="isclosed" class="x-tag" :class="['x-tag-'+color, {'is-hover': ishover}]">
       <span class="x-tag-desc"><slot></slot></span>
-      <i class="icon-close x-tag-close" v-if="closable" @click="hiddenTag"></i>
+      <i class="icon-iconset0127 x-tag-close" v-if="closable" @click="hiddenTag"></i>
     </div>
   </transition>
 </template>
@@ -12,20 +12,22 @@
     name: 'xTag',
     props: {
       closable: Boolean,
+      ishover:Boolean,
       color: {
         type: String,
-        default: 'primary'
-      }
+        default: 'default'
+      },
+      name:[Number, String,Object],
     },
     data () {
       return {
-        isclosed: false
+        isclosed: true
       }
     },
     methods: {
-      hiddenTag () {
-        this.isclosed = true
-        this.$emit('close')
+      hiddenTag (e) {
+        this.isclosed = false;
+        this.$emit('on-close', e, this.name);
       }
     }
   }

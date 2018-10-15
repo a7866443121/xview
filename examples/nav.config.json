@@ -80,6 +80,17 @@
       ]
     },
     {
+      "desc": "表单组件",
+      "path": "/component",
+      "items": [
+        {
+          "desc": "table 表格",
+          "name": "table",
+          "path": "/table"
+        }
+      ]
+    },
+    {
       "desc": "功能组件",
       "path": "/component",
       "items": [

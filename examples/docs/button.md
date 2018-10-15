@@ -1,49 +1,38 @@
 <style lang="scss">
-	.x-button{
+	.x-btn{
 		margin:10px;
 	}
 </style>
 <script>
  export default {
-    methods: {
-      hellow(e) {
-        alert('点击会传回当前点击的事件对象:' + e);
-      }
-    }
+    
   }
 </script>
 # Button 按钮
 ----
 ### 基础用法
-使用```type```、```radius```和```round```属性来定义 Button 的样式。
+使用```type```定义按钮颜色, ```circle``` ```radius```  ```round``` ```disabled```属性来定义 Button 的样式。
 
 <div class="demo-block">
 	<div>
-		<x-button>默认按钮</x-button>
-		<x-button type="plain">朴素按钮</x-button>
-		<x-button type="primary">主要按钮</x-button>
-		<x-button type="success">成功按钮</x-button>
-		<x-button type="info">信息按钮</x-button>
-		<x-button type="warning">警告按钮</x-button>
-		<x-button type="danger">危险按钮</x-button>
+		<x-button circle><i class="icon-iconset0157 fs-16"></i></x-button>
+		<x-button type="plain" round>plain</x-button>
+		<x-button type="info" radius>info</x-button>
+		<x-button type="primary">primary</x-button>
+		<x-button type="success">success</x-button>
+		<x-button type="success" disabled>success</x-button>
+		<x-button type="warning">warning</x-button>
+		<x-button type="danger" radius><i class="icon-iconset0144 fs-16"></i> danger</x-button>
 	</div>
 	<div>
-		<x-button radius>默认按钮</x-button>
-		<x-button type="plain" radius>朴素按钮</x-button>
-	    <x-button type="primary" radius>主要按钮</x-button>
-	    <x-button type="success" radius>成功按钮</x-button>
-	    <x-button type="info" radius>信息按钮</x-button>
-	    <x-button type="warning" radius>警告按钮</x-button>
-	    <x-button type="danger" radius>危险按钮</x-button>
-	</div>
-	<div>
-		<x-button round>默认按钮</x-button>
-		<x-button type="plain" round>朴素按钮</x-button>
-	    <x-button type="primary" round>主要按钮</x-button>
-	    <x-button type="success" round>成功按钮</x-button>
-	    <x-button type="info" round>信息按钮</x-button>
-	    <x-button type="warning" round>警告按钮</x-button>
-	    <x-button type="danger" round>危险按钮</x-button>
+		<x-button type="outline" circle><i class="icon-iconset0157 fs-16"></i></x-button>
+		<x-button type="plain-outline" round>plain</x-button>
+		<x-button type="info-outline" radius>info</x-button>
+		<x-button type="primary-outline">primary</x-button>
+		<x-button type="success-outline">success</x-button>
+		<x-button type="success-outline" disabled>success</x-button>
+		<x-button type="warning-outline">warning</x-button>
+		<x-button type="danger-outline" radius><i class="icon-iconset0144 fs-16"></i> danger</x-button>
 	</div>
 </div>
 
@@ -51,135 +40,36 @@
 ```html
 
 <div>
-	<x-button>默认按钮</x-button>
-	<x-button type="plain">朴素按钮</x-button>
-	<x-button type="primary">主要按钮</x-button>
-	<x-button type="success">成功按钮</x-button>
-	<x-button type="info">信息按钮</x-button>
-	<x-button type="warning">警告按钮</x-button>
-	<x-button type="danger">危险按钮</x-button>
-</div>
-<div>
-	<x-button radius>默认按钮</x-button>
-	<x-button type="plain" radius>朴素按钮</x-button>
-	<x-button type="primary" radius>主要按钮</x-button>
-	<x-button type="success" radius>成功按钮</x-button>
-	<x-button type="info" radius>信息按钮</x-button>
-	<x-button type="warning" radius>警告按钮</x-button>
-	<x-button type="danger" radius>危险按钮</x-button>
-</div>
-<div>
-	<x-button round>默认按钮</x-button>
-	<x-button type="plain" round>朴素按钮</x-button>
-	<x-button type="primary" round>主要按钮</x-button>
-	<x-button type="success" round>成功按钮</x-button>
-	<x-button type="info" round>信息按钮</x-button>
-	<x-button type="warning" round>警告按钮</x-button>
-	<x-button type="danger" round>危险按钮</x-button>
+	<div>
+		<x-button circle><i class="icon-iconset0157 fs-16"></i></x-button>
+		<x-button type="plain" round>plain</x-button>
+		<x-button type="info" radius>info</x-button>
+		<x-button type="primary">primary</x-button>
+		<x-button type="success">success</x-button>
+		<x-button type="success" disabled>success</x-button>
+		<x-button type="warning">warning</x-button>
+		<x-button type="danger" radius><i class="icon-iconset0144 fs-16"></i> danger</x-button>
+	</div>
+	<div>
+		<x-button type="outline" circle><i class="icon-iconset0157 fs-16"></i></x-button>
+		<x-button type="plain-outline" round>plain</x-button>
+		<x-button type="info-outline" radius>info</x-button>
+		<x-button type="primary-outline">primary</x-button>
+		<x-button type="success-outline">success</x-button>
+		<x-button type="success-outline" disabled>success</x-button>
+		<x-button type="warning-outline">warning</x-button>
+		<x-button type="danger-outline" radius><i class="icon-iconset0144 fs-16"></i> danger</x-button>
+	</div>
 </div>
 
 ```
 :::
-
-### 禁用状态
-
-使用```disabled```来定义 Button 是否可用。
-
-<div class="demo-block">
-	<div>
-		<x-button disabled>默认按钮</x-button>
-		<x-button type="plain" disabled>朴素按钮</x-button>
-		<x-button type="primary" disabled>主要按钮</x-button>
-		<x-button type="success" disabled>成功按钮</x-button>
-		<x-button type="info" disabled>信息按钮</x-button>
-		<x-button type="warning" disabled>警告按钮</x-button>
-		<x-button type="danger" disabled>危险按钮</x-button>
-	</div>
-	<div>
-		<x-button radius disabled>默认按钮</x-button>
-		<x-button type="plain" radius disabled>朴素按钮</x-button>
-		<x-button type="primary" radius disabled>主要按钮</x-button>
-		<x-button type="success" radius disabled>成功按钮</x-button>
-		<x-button type="info" radius disabled>信息按钮</x-button>
-		<x-button type="warning" radius disabled>警告按钮</x-button>
-		<x-button type="danger" radius disabled>危险按钮</x-button>
-	</div>
-	<div>
-		<x-button round disabled>默认按钮</x-button>
-		<x-button type="plain" round disabled>朴素按钮</x-button>
-		<x-button type="primary" round disabled>主要按钮</x-button>
-		<x-button type="success" round disabled>成功按钮</x-button>
-		<x-button type="info" round disabled>信息按钮</x-button>
-		<x-button type="warning" round disabled>警告按钮</x-button>
-		<x-button type="danger" round disabled>危险按钮</x-button>
-	</div>
-</div>
-
-::: demo
-```html
-
-<div>
-	<x-button disabled>默认按钮</x-button>
-	<x-button type="plain" disabled>朴素按钮</x-button>
-	<x-button type="primary" disabled>主要按钮</x-button>
-	<x-button type="success" disabled>成功按钮</x-button>
-	<x-button type="info" disabled>信息按钮</x-button>
-	<x-button type="warning" disabled>警告按钮</x-button>
-	<x-button type="danger" disabled>危险按钮</x-button>
-</div>
-<div>
-	<x-button radius disabled>默认按钮</x-button>
-	<x-button type="plain" radius disabled>朴素按钮</x-button>
-	<x-button type="primary" radius disabled>主要按钮</x-button>
-	<x-button type="success" radius disabled>成功按钮</x-button>
-	<x-button type="info" radius disabled>信息按钮</x-button>
-	<x-button type="warning" radius disabled>警告按钮</x-button>
-	<x-button type="danger" radius disabled>危险按钮</x-button>
-</div>
-<div>
-	<x-button round disabled>默认按钮</x-button>
-	<x-button type="plain" round disabled>朴素按钮</x-button>
-	<x-button type="primary" round disabled>主要按钮</x-button>
-	<x-button type="success" round disabled>成功按钮</x-button>
-	<x-button type="info" round disabled>信息按钮</x-button>
-	<x-button type="warning" round disabled>警告按钮</x-button>
-	<x-button type="danger" round disabled>危险按钮</x-button>
-</div>
-
   
-```
-:::
-
-### 图标按钮
-非多色的话图标建议使用unicode,当然足够的自主是必须的,symbol也随意
-<div class="demo-block">
-	<x-button disabled><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-	<x-button><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-	<x-button type="plain"><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-	<x-button type="primary" round><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-	<x-button type="success" radius><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-	<x-button type="warning" radius><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-	<x-button type="danger" radius><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-</div>
-
-::: demo
-```html
-
-<x-button disabled><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-<x-button><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-<x-button type="plain"><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-<x-button type="primary" round><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-<x-button type="success" radius><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-<x-button type="warning" radius><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-<x-button type="danger" radius><i class="icon-magnifying_glass fs-16"></i> 搜索</x-button>
-
-```
-:::
 
 ### Attributes
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| type     | 类型   | string    | plain , primary , success , info , warning , danger |     —    |
+| type     | 类型  +(-outline)为线条按钮  | string    | plain , primary , success , info , warning , danger |     —    |
 | round     | 圆端按钮  | Boolean    | — | false   |
 | radius  | 圆角按钮    | boolean   | —   | false   |
 | disabled  | 是否禁用状态    | boolean   | —   | false   |

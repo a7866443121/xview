@@ -1,17 +1,17 @@
 <template>
   <button
-    class="x-button" 
-    :disabled="disabled" 
+    class="x-btn" 
     :class="[
-    type ? 'x-button-' + type : '',
+    type ? 'x-btn-' + type : '',
     	{
     		'is-round': round,
-    		'is-radius': radius,
+    		'is-radius': radius, 
+    		'is-circle': circle,
     		'is-disabled':disabled,
     	},
     ]"
   >
-    <slot></slot>
+    <slot>按钮</slot>
   </button>
 </template>
 <script>
@@ -25,7 +25,8 @@
       plain: Boolean,
       disabled: Boolean,
       round: Boolean,
-      radius:Boolean,
+      radius: Boolean,
+      circle: Boolean,
     },
     data () {
       return {}

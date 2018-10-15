@@ -1,6 +1,6 @@
 <style>
   .x-tag{
-    margin-right: 10px;
+    margin: 10px;
   }
 </style>
 
@@ -10,21 +10,43 @@
 由`type`属性来选择tag的类型，也可以通过`color`属性来自定义背景色。
 
 <div class="demo-block">
-  <x-tag>标签一</x-tag>
-  <x-tag color="success">标签二</x-tag>
-  <x-tag color="info">标签三</x-tag>
-  <x-tag color="warning">标签四</x-tag>
-  <x-tag color="danger">标签五</x-tag>
+	<div>
+	  <x-tag>标签一</x-tag>
+	  <x-tag color="info">标签三</x-tag>
+	  <x-tag color="primary">标签二</x-tag>
+	  <x-tag color="success">标签二</x-tag>
+	  <x-tag color="warning">标签四</x-tag>
+	  <x-tag color="danger">标签五</x-tag>
+	</div>
+	<div>
+	  <x-tag ishover>hover1</x-tag>
+	  <x-tag ishover color="info">hover3</x-tag>
+	  <x-tag ishover color="primary">标签二</x-tag>
+	  <x-tag ishover color="success">hover2</x-tag>
+	  <x-tag ishover color="warning">hover4</x-tag>
+	  <x-tag ishover color="danger">hover5</x-tag>
+ 	</div>
 </div>
 
 ::: demo
 ```html
 
+<div>
   <x-tag>标签一</x-tag>
-  <x-tag color="success">标签二</x-tag>
   <x-tag color="info">标签三</x-tag>
+  <x-tag color="primary">标签二</x-tag>
+  <x-tag color="success">标签二</x-tag>
   <x-tag color="warning">标签四</x-tag>
   <x-tag color="danger">标签五</x-tag>
+</div>
+<div>
+  <x-tag ishover>hover1</x-tag>
+  <x-tag ishover color="info">hover3</x-tag>
+  <x-tag ishover color="primary">标签二</x-tag>
+  <x-tag ishover color="success">hover2</x-tag>
+  <x-tag ishover color="warning">hover4</x-tag>
+  <x-tag ishover color="danger">hover5</x-tag>
+</div>
 
 ```
 :::
@@ -36,11 +58,15 @@
 <div class="demo-block">
 <x-tag
   :key="tag.name"
-  v-for="tag in dynamicTags"
+  v-for="(tag, index) in dynamicTags" 
+  :ishover="index < 2"
   closable 
-  @close="handleClose(tag)" :color="tag.color">
+  :color="tag.color" 
+  :name="tag" 
+  @on-close="handleClose">
   {{tag.name}}
 </x-tag>
+</div>
 <script>
 export default {
     data() {
@@ -64,24 +90,29 @@ export default {
       };
     },
     methods: {
-      handleClose(tag) {
-        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+      handleClose(event, name) {
+        console.log(event, name);
       }
     }
   }
 </script>
-</div>
+
 
 ::: demo
 ```html
 
-<x-tag
-  :key="tag.name"
-  v-for="tag in dynamicTags"
-  closable 
-  @close="handleClose(tag)" :color="tag.color">
-  {{tag.name}}
-</x-tag>
+<template>
+  <x-tag
+    :key="tag.name"
+    v-for="(tag, index) in dynamicTags" 
+    :ishover="index < 2"
+    closable 
+    :color="tag.color" 
+    :name="tag" 
+    @on-close="handleClose">
+    {{tag.name}}
+  </x-tag>
+</template>
 <script>
 export default {
     data() {
@@ -105,8 +136,8 @@ export default {
       };
     },
     methods: {
-      handleClose(tag) {
-        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+      handleClose(event, name) {
+        console.log(event, name);
       }
     }
   }
@@ -121,10 +152,11 @@ export default {
 |---------- |-------------- |---------- |--------------------------------  |-------- |
 | name | 用于触发关闭事件时的回调 | Boolean | — | false |
 | color | 类型 | String |  `primary`, `success`, `error`, `warning`, `info` | primary |
+| ishover | 是否有hover效果 | Boolean | — | false |
 | closable | 是否可关闭 | Boolean | — | false |
 
 ## Tag 事件
 
 | 事件名称      | 说明          | 返回值  |
 |---------- |-------------- |---------- |
-| close | 点击关闭按钮时触发 | event |
+| on-close | 点击关闭按钮时触发 | event,name |

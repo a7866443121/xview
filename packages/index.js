@@ -7,6 +7,8 @@ import xAlert from './alert/index';
 import xLoadingBar from './loading-bar/index';
 import xShade from './shade/index';
 import MetaInfo from './meta-info/index';
+import {xFiexdColumnTable, xResizeTable} from './table/index';
+
 
 const components = [
   xButton,
@@ -15,6 +17,8 @@ const components = [
   xShowMore,
   xLimitTextArea,
   xAlert,
+  xResizeTable,
+	xFiexdColumnTable,
 ]
 const install = function(Vue) {
   if (install.installed) return
@@ -39,5 +43,7 @@ export default {
   xAlert,
   xLoadingBar,
 	xShade,
+	xResizeTable,
+	xFiexdColumnTable,
 	MetaInfo,
 }
