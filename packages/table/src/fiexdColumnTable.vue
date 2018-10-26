@@ -40,10 +40,13 @@
 </template>
 <script>
 export default {
-  name: "x-fiexd-column-table",
+  name: "rx-table",
   props: {
     setTable: {
-      type: Object
+      type: Object,
+      default: {
+        cellWidth: 80
+      } 
     },
     // 固定的列数
     column: {
@@ -145,15 +148,13 @@ export default {
               mousemove.preventDefault();
               //鼠标按下时取到的做偏移 + 鼠标移动的距离(mousemove.pageX - mousedown.pageX)
               var width = ethWidth + mousemove.pageX - mousedown.pageX;
-              //当缩到最小值或或80时不再缩小,bar不再移动
-              if (width < (_this.setTable.cellWidth || 80)) {
-                _this.resizBar.left = (eth.offsetLeft - activityColumn.scrollLeft + eth.offsetWidth - 10); 
+              //当缩到最小值时不再缩小,bar不再移动
+              if (width < _this.setTable.cellWidth) {
+                _this.resizBar.left = (eth.offsetLeft + eth.offsetWidth - 10); 
                 //设置固定列的宽度
-                _this.fiexd.ath[index].style.width = (_this.setTable.cellWidth || 80) + "px";
+                _this.fiexd.ath[index].style.width = _this.setTable.cellWidth + "px";
                 //设置列宽度
-                _this.activity.ath[index].style.width = (_this.setTable.cellWidth || 80) + "px";
-                //设置固定列盒子的宽度
-                _this.setFixedColumnWidth();
+                _this.activity.ath[index].style.width = _this.setTable.cellWidth + "px";
               } else {
                 //设置bar的位置
                 _this.resizBar.left = left + mousemove.pageX - mousedown.pageX + scrollLeft - activityColumn.scrollLeft;
@@ -161,12 +162,12 @@ export default {
                 _this.fiexd.ath[index].style.width = width + "px";
                 //设置列宽度
                 _this.activity.ath[index].style.width = width + "px";
-                //设置固定列盒子的宽度
-                _this.setFixedColumnWidth();
               }
               _this.cellWidth[index] = _this.fiexd.ath[index].offsetWidth;
               //设置表格大小
               _this.activityWidth = activityWidth + mousemove.pageX - mousedown.pageX;
+              //设置固定列盒子的宽高
+              _this.setFixedColumnWidth();
               _this.setFixedColumnHeight();
             }
           };
@@ -177,20 +178,22 @@ export default {
     setFixedColumnWidth() {
       var width = 0;
       this.fiexd.showAth.forEach((item, index) => {
-        width += item.offsetWidth;
+        //去除宽度转换成number类型
+        var num = item.style.width.match(/\d\B/ig).join('') - 0;
+        width += num;
       });
       this.fiexdWidth = width;
     },
     //鼠标离开thead时,并且进入的元素是缩放条,那么缩放条显示,否则隐藏;
     theadMouseleave(e) {
-      this.resizBar.show = e.toElement && e.toElement.classList.contains('rx-table-resize-bar') ? true : false;
+      this.resizBar.show = e.toElement ? (e.toElement.classList.contains('rx-table-resize-bar') ? true : false) : false;
     },
     //设置出现滚动条时固定列的高度
     setFixedColumnHeight(){
       var activityColumn = this.$el.querySelector(".rx-activity-column");
       //滚动条的高度
       var scrollOffsetWidth = activityColumn.offsetHeight - activityColumn.querySelector(".rx-table-body").offsetHeight;
-      this.$el.querySelector(".rx-fiexd-column").style.height = scrollOffsetWidth > 10 ? ("calc(100% - " + scrollOffsetWidth + "px)") : '100%';
+      this.fiexdHeight = scrollOffsetWidth > 10 ? ("calc(100% - " + scrollOffsetWidth + "px)") : '100%';
     },
     init() {
       var _this = this;
@@ -210,64 +213,71 @@ export default {
         }
         _this.minWidth += e.width || _this.setTable.cellWidth;  
       });  
-      //存入缓存
-      localStorage.setItem('xgj_tablecell_width',JSON.stringify(xgj_tablecell_width));   
-      //存在固定列,并且列数大于0,设置固定列的高度
-      (_this.column && _this.column > 0) &&  _this.setFixedColumnHeight();
 			//绑定鼠标移入移出
 			_this.activity.atr.forEach((item,index) => {
-				item.addEventListener('mouseenter',function(){
-					mouseenter(item,index);
+        item.addEventListener('mouseenter',function(){
+          mouseenter(item,index);
 				});
 				_this.fiexd.atr[index].addEventListener('mouseenter',function(){
-					mouseenter(item,index);
+          mouseenter(item,index);
 				});
 				item.addEventListener('mouseleave',function(){
-					mouseleave(item,index);
+          mouseleave(item,index);
 				});
 				_this.fiexd.atr[index].addEventListener('mouseleave',function(){
-					mouseleave(item,index);
+          mouseleave(item,index);
 				});
 			});
 			//鼠标移入
 			function mouseenter(item,index){
-				_this.fiexd.atr[index].classList.add('hover');
-				_this.activity.atr[index].classList.add('hover');
+        //存在固定列,并且列数大于0,设置固定列的宽高
+        _this.fiexd.atr[index].classList.add('hover');
+        _this.activity.atr[index].classList.add('hover');
 			}
 			//移出
 			function mouseleave(item,index){
-				_this.fiexd.atr[index].classList.remove('hover');
+        _this.fiexd.atr[index].classList.remove('hover');
 				_this.activity.atr[index].classList.remove('hover');
 			}
 			//绑定排序
 			var fiexdSort = _this.$el.querySelectorAll( ".rx-fiexd-column .rx-thead .sort");
 			var activitySort = _this.$el.querySelectorAll( ".rx-activity-column .rx-thead .sort");
 			activitySort.forEach((item,index) => {
-				item = _this.column > index ? fiexdSort[index] : item;
-				item.sort = true;
-				item.classList.add('down');
-				item.onclick = (e) => {
+        item = _this.column > index ? fiexdSort[index] : item;
+				item.sort = 0;
+				item.onclick = () => {
+          //排序
+					var sort = '0';
 					//每次点击删除其它的排序条件
-					_this.$el.querySelectorAll(".sort").forEach((sort) => {
-						!sort.isEqualNode(e.target) && sort.classList.remove('up') && sort.classList.add('down');
+					_this.$el.querySelectorAll(".up.sort").forEach((up) => {
+            !up.isEqualNode(item) && up.classList.remove('up');
 					});
-					item.sort = !item.sort;
-					if(item.sort){
-						item.classList.remove('down');
+					_this.$el.querySelectorAll(".down.sort").forEach((down) => {
+            !down.isEqualNode(item) && down.classList.remove('down');
+					});
+					if(item.classList.contains('down')){
+            item.classList.remove('down');
 						item.classList.add('up');
-					}else{
-						item.classList.remove('up');
+						item.sort = 1;
+					}else if(item.classList.contains('up')){
+            item.classList.remove('up');
 						item.classList.add('down');
+						item.sort = 2;
+					}else{
+            item.classList.remove('down');
+						item.classList.add('up');
+						item.sort = 1;
 					}
 					//调排序方法
 					_this.$emit('sort',{
 						sort: item.sort,
 						index: index,
 					});
-					e.stopPropagation();
 				}
 			});
-
+      //存入缓存
+      JSON.parse(localStorage.getItem('xgj_tablecell_width')) && localStorage.setItem('xgj_tablecell_width',JSON.stringify(xgj_tablecell_width));    
+      (!!_this.column && _this.column > 0) && (_this.setFixedColumnHeight(), _this.setFixedColumnWidth());   
     }
   },
   mounted() {
@@ -281,7 +291,7 @@ export default {
     //获取显示出来的固定列
     _this.fiexd.showAth = getShowFiexdColumn();
     //收缩条
-    _this.resizBar.eBar = this.$el.querySelector(".rx-table-resize-bar");
+    _this.resizBar.eBar = this.$el.querySelector(".rx-table-resize-bar"); 
     //初始化表格
     _this.init();
     //获取每个th到table最左边的距离
@@ -296,7 +306,7 @@ export default {
       });
       return arr;
     }
-  }
+  },
 };
 </script>
 <style lang="scss">
@@ -309,13 +319,12 @@ $border: 1px solid #e3e1ea;
 .rx-fiexd-column-table {
   position: relative;
   max-width: 100%;
-  height: 100%;
 	overflow: hidden;
   .rx-fiexd-column {
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
+    width: 100%;
     overflow: hidden;
     z-index: 9;
     .rx-table-body {
@@ -403,6 +412,9 @@ $border: 1px solid #e3e1ea;
       border-left: 1px solid $resizeBarline;
       pointer-events: none
     }
+  }
+  table tr td{
+    white-space: pre-wrap
   }
 }
 </style>
