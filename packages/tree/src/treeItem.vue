@@ -6,17 +6,17 @@
     <div class="tree-title">
       <!--存在子集才显示,  每次点击 支线控制器取反, icon跟随控制器切换 -->
       <span v-show="data.subdeparts.length" @click="open = !open" class="tree-icon">
-        <icon 
-          :name="open ? 'icon-xuanzezhankaiicon' : 'icon-xuanzeweizhankaiicon'"
-        ></icon>
+        <rx-icon 
+          :name="open ? 'icon-cengjijiegou-yizhankai' : 'icon-cengjijiegou-zhankai'"
+        ></rx-icon>
       </span>
       <!-- checkbox图标,多选时才显示 -->
       <span  v-show="init.isManyCheck" @click="CheckedClick" class="tree-icon">
-        <icon 
+        <rx-icon 
           class="tree-select" 
-          :name="isUse ? 'icon-weiquanxuanyixuanze' : 'icon-weixuanzhong1'" 
+          :name="isUse ? 'icon-fuxuankuang-xuanzhong' : 'icon-fuxuankuang'" 
           :class="{fblue: isBlue}"
-        ></icon>
+        ></rx-icon>
       </span>
         <!-- 结点图标 -->
       <span 
@@ -25,14 +25,14 @@
       >
        <!-- 是否显示支线 || 结点icon,根据支线icon控制显示/隐藏, (支线icon = 存在子集, 结点 = 不存在子集) -->
         <span v-show="init.feederIcon" class="tree-icon">
-          <icon  
+          <rx-icon  
             :name="data.subdeparts.length ? init.feederIcon : crunodeIcon" 
-          ></icon>
+          ></rx-icon>
         </span>
         <font class="tree-name"> {{data.name || ''}}</font>
       </span>
     </div>
-    <tree 
+    <rx-tree 
       v-if="data.subdeparts.length" 
       :data="data.subdeparts" 
       v-show="open" 
@@ -40,7 +40,7 @@
       @tellChecked="tellChecked" 
       @callBack="getTreeParameter" 
       ref="tree" 
-    ></tree>
+    ></rx-tree>
   </li>
 </template>
 <script>
@@ -79,7 +79,7 @@ export default {
     //给dom加上参数属性
     this.$el.dataValue = JSON.stringify(this.data);    
     //是否全部展开的设置优先
-    this.open = this.init.isOpen || false;
+    this.open = typeof this.init.isOpen == 'boolean' ? this.init.isOpen : false;
     //设置默认选中项 
     this.init.isManyCheck ? ((this.isUse = this.data.isCheck || false) && (this.CheckedClick(true))) : (this.data.isCheck && this.getPitchOn(true));
   },
@@ -142,10 +142,13 @@ export default {
     }
   },
   watch: {
+  	open(n,o){
+  		this.open = n;
+  	},
     //实时监听传入值的改变
     data: {
       handler(n, o) { 
-        console.log(n);
+//      console.log(n);
       },
       deep: true
     },
@@ -156,6 +159,7 @@ export default {
 <style lang="scss">
   .tree-icon{
     user-select: none;
+    margin: 2px
   }
   .fblue{
     color: #3673FF;

@@ -1,7 +1,7 @@
 <template>
-	<div class="rx-table" @mouseleave="resizBar.show = hover ? true : false">
-		<table class="rx-table-body" cellpadding="0" cellspacing="0" :style="{width: tableWidth + 'px',minWidth: minWidth + 'px',}">
-			<thead class="rx-thead" :class="hover ? 'hover' : ''" @mouseleave="theadMouseleave">
+	<div class="rx-table scroll" @mouseleave="resizBar.show = hover ? true : false">
+		<table class="rx-table-body" cellpadding="0" cellspacing="0" :style="{width: tableWidth + (/%/g.test(tableWidth) ? '%' : 'px'),minWidth: minWidth + 'px',}">
+			<thead class="rx-thead" :class="hover ? 'hover' : ''" @mouseleave="theadMouseleave" @selectstart.prevent>
 				<!-- 头部插槽 -->
 				<slot name="thead"></slot>
 			</thead>
@@ -17,7 +17,8 @@
 			v-show="resizBar.show" 
 			class="rx-table-resize-bar" 
 			:style="{left: resizBar.left + 'px', height: resizBar.height + 'px',}"  
-			@mouseleave="resizBar.show = hover ? true : false"
+			@mouseleave="resizBar.show = hover ? true : false" 
+			@selectstart.prevent 
 		>
 			<div class="rx-table-reize-barline"></div>
 		</div>
@@ -26,8 +27,17 @@
 </template>
 <script>
 	export default {
-		name: 'x-resize-table',
-		props: ['itemWidth'],
+		name: 'resizetable',
+		props: {
+			itemWidth: {
+				type: Number,
+				default: 80,
+			},
+			resiz: {
+				type: Boolean,
+				default:true,
+			}
+		},
 		data() {
 			return {
 				minWidth:'',
@@ -55,7 +65,7 @@
 				//是否在thead(在thead范围内)
 				inThead: false,
 				//固定列头时,宽度收缩
-				tableWidth: 0,
+				tableWidth: '100%',
 			};
 		},
 		methods: {
@@ -110,7 +120,7 @@
 			},
 			//鼠标离开thead时,并且进入的元素是缩放条,那么缩放条显示,否则隐藏;
 			theadMouseleave(e) {
-				this.resizBar.show = e.toElement.classList.contains('rx-table-resize-bar') ? true : false;
+				this.resizBar.show = e.relatedTarget ? (e.relatedTarget.classList.contains('rx-table-resize-bar') ? true : false) : false;
 			},
 			init() {
 				var _this = this;
@@ -120,6 +130,7 @@
 					width += e.width || _this.itemWidth;
 					e.style.width = e.width || _this.itemWidth + 'px';
 				});
+				_this.tableWidth = width;
 				_this.minWidth = width;
 			}
 		},
@@ -130,9 +141,9 @@
 			//收缩条
 			_this.resizBar.eBar = this.$el.querySelector('.rx-table-resize-bar');
 			//初始化表格
-			_this.init();
+			_this.resiz && _this.init();
 			//获取每个th到table最左边的距离
-			_this.getLeft();
+			_this.resiz && _this.getLeft();
 		}
 	};
 </script>
@@ -149,21 +160,21 @@
 	.rx-table {
 		position: relative;
 		max-width: 100%;
-		height: 100%;
 		text-align: left;
 		overflow: auto;
 		.rx-table-body {
 			width: 100%;
-			height: 100%;
 			table-layout: fixed;
 			border: $border;
 			border-collapse: collapse;
 			/* 表头start */
 			.rx-thead {
 				cursor: pointer;
+				-moz-user-select: none;
+				-webkit-user-select: none;
 				th {
 					white-space: nowrap;
-					padding: 12px 10px;
+					padding: 18px 20px;
 					color: $th;
 					background: $thbg;
 					font-weight: bold;
@@ -182,15 +193,14 @@
 				.rx-tr {
 					&:nth-child(even) {
 						background: #f9fbfc;
-						border-top: 1px solid #eaf1fe;
-						border-bottom: 1px solid #eaf1fe;
 					}
 					&:hover {
-						background: #eaf1ff;
+						background: #EEF2F7;
 					}
 					td {
-						padding: 12px 10px;
-						line-height: 20px;
+						padding: 18px 20px;
+	          font-size: 14px;
+	          line-height: 1em;
 						vertical-align: middle;
 						box-sizing: border-box;
 						min-width: 80px;

@@ -3,7 +3,7 @@
 			<!--固定列头-->
 		<div class="rx-fiexd-column" :class="{'shadow': resizBar.show}" :style="{width: fiexdWidth + 'px'}">
 			<table class="rx-table-body" cellpadding="0" cellspacing="0" :style="{width: fiexdWidth + 'px'}">
-				<thead class="rx-thead" :class="hover ? 'hover' : ''"  @mouseleave="theadMouseleave">
+				<thead class="rx-thead" :class="hover ? 'hover' : ''"  @mouseleave="theadMouseleave" @selectstart.prevent>
 					<!-- 头部插槽 -->
 					<slot name="fiexd-thead"></slot>
 				</thead>
@@ -14,9 +14,9 @@
 			</table>
 		</div>
 		<!--表格主体-->
-		<div class="rx-activity-column">
+		<div class="rx-activity-column scroll">
 			<table class="rx-table-body" cellpadding="0" cellspacing="0" :style="{width: activityWidth + 'px'}">
-			<thead class="rx-thead" :class="hover ? 'hover' : ''"  @mouseleave="theadMouseleave">
+			<thead class="rx-thead" :class="hover ? 'hover' : ''"  @mouseleave="theadMouseleave" @selectstart.prevent>
 					<!-- 头部插槽 -->
 					<slot name="thead"></slot>
 				</thead>
@@ -30,7 +30,8 @@
 		<div 
       v-show="resizBar.show" class="rx-table-resize-bar" 
       :style="{left: resizBar.left + 'px', height: resizBar.height + 'px',}" 
-      @mouseleave="resizBar.show = hover ? resizBar.show : false"
+      @mouseleave="resizBar.show = hover ? resizBar.show : false" 
+      @selectstart.prevent
     >
 			<div class="rx-table-reize-barline"></div>
 		</div>
@@ -110,8 +111,8 @@ export default {
 				//是否在固定列?
 				eth = _this.column > index ? _this.fiexd.ath[index] : eth;
         eth.onmouseenter = e => {
-					//设置收缩条的位置,尺寸 缩放条一半的宽度 = 5
-					_this.resizBar.left = _this.column > index ? (eth.offsetLeft + eth.offsetWidth - 10) : (eth.offsetLeft - activityColumn.scrollLeft + eth.offsetWidth - 10);
+					//设置收缩条的位置
+					setBarLeft()
           _this.resizBar.show = true;
           //设置缩放条的高度 = thead的高度
           _this.resizBar.height = eth.parentNode.offsetHeight;
@@ -148,21 +149,11 @@ export default {
               mousemove.preventDefault();
               //鼠标按下时取到的做偏移 + 鼠标移动的距离(mousemove.pageX - mousedown.pageX)
               var width = ethWidth + mousemove.pageX - mousedown.pageX;
-              //当缩到最小值时不再缩小,bar不再移动
-              if (width < _this.setTable.cellWidth) {
-                _this.resizBar.left = (eth.offsetLeft + eth.offsetWidth - 10); 
-                //设置固定列的宽度
-                _this.fiexd.ath[index].style.width = _this.setTable.cellWidth + "px";
-                //设置列宽度
-                _this.activity.ath[index].style.width = _this.setTable.cellWidth + "px";
-              } else {
-                //设置bar的位置
-                _this.resizBar.left = left + mousemove.pageX - mousedown.pageX + scrollLeft - activityColumn.scrollLeft;
-                //设置固定列的宽度
-                _this.fiexd.ath[index].style.width = width + "px";
-                //设置列宽度
-                _this.activity.ath[index].style.width = width + "px";
-              }
+              //固定列的th宽度和活动列的宽度两者同步,当缩到最小值时不再缩小,
+              _this.activity.ath[index].style.width = _this.fiexd.ath[index].style.width = (width < _this.setTable.cellWidth ? _this.setTable.cellWidth : width) + 'px';
+              //设置bar的位置
+              setBarLeft();
+              //设置缓存
               _this.cellWidth[index] = _this.fiexd.ath[index].offsetWidth;
               //设置表格大小
               _this.activityWidth = activityWidth + mousemove.pageX - mousedown.pageX;
@@ -171,6 +162,10 @@ export default {
               _this.setFixedColumnHeight();
             }
           };
+          //设置bar的位置,缩放条一半的宽度 = 5
+          function setBarLeft(){
+          	_this.resizBar.left = _this.column > index ? (eth.offsetLeft + eth.offsetWidth - 10) : (eth.offsetLeft - activityColumn.scrollLeft + eth.offsetWidth - 10);
+          }
         };
       });
     },
@@ -186,7 +181,7 @@ export default {
     },
     //鼠标离开thead时,并且进入的元素是缩放条,那么缩放条显示,否则隐藏;
     theadMouseleave(e) {
-      this.resizBar.show = e.toElement ? (e.toElement.classList.contains('rx-table-resize-bar') ? true : false) : false;
+      this.resizBar.show = e.relatedTarget ? (e.relatedTarget.classList.contains('rx-table-resize-bar') ? true : false) : false;
     },
     //设置出现滚动条时固定列的高度
     setFixedColumnHeight(){
@@ -320,6 +315,7 @@ $border: 1px solid #e3e1ea;
   position: relative;
   max-width: 100%;
 	overflow: hidden;
+	text-align: left;
   .rx-fiexd-column {
     position: absolute;
     top: 0;
@@ -329,7 +325,6 @@ $border: 1px solid #e3e1ea;
     z-index: 9;
     .rx-table-body {
       width: 100%;
-      height: 100%;
     }
     &.shadow{
       box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
@@ -338,12 +333,10 @@ $border: 1px solid #e3e1ea;
   .rx-activity-column {
     position: relative;
     width: 100%;
-    height: 100%;
     overflow: auto;
   }
   .rx-table-body {
     width: 100%;
-    height: 100%;
     table-layout: fixed;
     border: $border;
     border-collapse: collapse;
@@ -352,7 +345,7 @@ $border: 1px solid #e3e1ea;
       cursor: pointer;
       th {
         white-space: nowrap;
-        padding: 12px 10px;
+        padding: 18px 20px;
         color: $th;
         background: $thbg;
         font-weight: bold;
@@ -371,15 +364,14 @@ $border: 1px solid #e3e1ea;
       .rx-tr {
         &:nth-child(even) {
           background: #f9fbfc;
-          border-top: 1px solid #eaf1fe;
-          border-bottom: 1px solid #eaf1fe;
         }
         &.hover {
-          background: #eaf1ff;
+          background: #EEF2F7;
         }
         td {
-          padding: 12px 10px;
-          line-height: 20px;
+          padding: 18px 20px;
+          font-size: 14px;
+          line-height: 1em;
           vertical-align: middle;
           box-sizing: border-box;
           min-width: 80px;
