@@ -1,16 +1,21 @@
 .DS_Store
 node_modules/
-dist/
+/dist/
+.history/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-test/unit/coverage
+/src/views/pages.js
+/src/views/menus.json
+/src/views/docs/*/index.vue
+/src/views/docs/*/*/index.vue
 
 # Editor directories and files
 .idea
 .vscode
+.history
+.backup
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-.history

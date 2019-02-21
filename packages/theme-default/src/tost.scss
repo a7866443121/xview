@@ -1,0 +1,66 @@
+.x-toast {
+  position: fixed;
+  top: 40%;
+  width: 100%;
+  height: 0;
+  z-index: 9999;
+  text-align: center;
+  .x-toast-box {
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 15px;
+    min-width: 100px;
+    max-width: 300px;
+  }
+
+  //遍历状态
+  $types: (
+    (
+      type: "success",
+      color: #4ec66b,
+      bgcolor: #ebf8f2
+    ),
+    (
+      type: "warn",
+      color: #eb9e08,
+      bgcolor: #fffaeb
+    ),
+    (
+      type: "error",
+      color: #f56a00,
+      bgcolor: #fadfdf
+    ),
+    (
+      type: "info",
+      color: #3673ff,
+      bgcolor: #ecf6fd
+    )
+  );
+
+  @for $i from 1 through length($types) {
+    $item: nth($types, $i);
+    &.#{map-get($item, type)} {
+      .x-toast-box{
+        color: map-get($item, color);
+        background-color: map-get($item, bgcolor);
+      }
+      svg.x-icon[name="rxfont-rxtoast-#{map-get($item, type)}"] {
+        display: inline;
+      }
+    }
+  }
+}
+  .fade-enter,.fade-leave-to{
+    transform: translateY(-50px); 
+  }
+  .fade-enter-active,
+  .fade-leave-active{
+    transition: all 0.3s;
+  }
+  .fade-enter-to,.fade-leave{
+    transform: translateY(0px);
+  }
+  .fade-leave-active{
+    transition-delay: 2s;
+  }    

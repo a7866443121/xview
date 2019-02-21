@@ -73,6 +73,11 @@
           "path": "/shade"
         },
         {
+          "desc": "tost 吐司",
+          "name": "tost",
+          "path": "/tost"
+        },
+        {
           "desc": "LoadingBar 加载进度条",
           "name": "loading-bar",
           "path": "/loadingBar"
@@ -87,6 +92,17 @@
           "desc": "table 表格",
           "name": "table",
           "path": "/table"
+        }
+      ]
+    },
+    {
+      "desc": "指令组件",
+      "path": "/directives",
+      "items": [
+        {
+          "desc": "directives",
+          "name": "指令",
+          "path": "/directives"
         }
       ]
     },
