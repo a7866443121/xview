@@ -1,73 +1,91 @@
 @import "./common/var.scss";
 @import "./common/variable.scss";
 @import "./common/mixin.scss";
+//常规的
 .x-tag {
+    position: relative;
     display: inline-block;
-    padding: 2px 8px;
-    font-size: 0;
-    line-height: none;
+    height: 32px;
     text-align: center;
     white-space: nowrap;
-    border: 1px solid $color-gray;
     border-radius: 4px;
     outline: 0;
-    color: $color-3;
+    background-color: #fff;
+    overflow: hidden;
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    .x-tag-desc {
-        display: inline-block;
-        font-size: 12px;
-        margin-right: 2px;
-        vertical-align: middle;
+    font-size: 12px;
+    .x-tag-inner{
+      float: left;
+      padding: 0 10px;
+      line-height: 30px;
     }
-    &.x-tag-default {
-        color: $color-3;
-        border-color: $color-gray;
-        &.is-hover:hover{
-            color: $color-white;
-            background-color: $color-gray;
-        }
+    .x-tag-bg{
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      pointer-events: none;
+    } 
+    .x-tag-close {
+      float: left;
+      line-height: 30px;
+      padding-right: 8px;
+      color: inherit;
+      cursor: pointer;
+      opacity: 0.6;
+      &:hover{
+        opacity: 1;
+      }
     }
-    &.x-tag-info {
-        border-color: $color-primary1;
-        color: $color-primary1;
-        &.is-hover:hover{
-            color: $color-white;
-            background-color: $color-primary1;
-        }
+    //中等标签
+    &.x-tag-medium{
+      height: 28px;
+      .x-tag-inner{
+        line-height: 26px;
+      }
+      .x-tag-close{
+        line-height: 26px;
+      }
     }
-    &.x-tag-success {
-        border-color: $color-success;
-        color: $color-success;
-        &.is-hover:hover{
-            color: $color-white;
-            background-color: $color-success;
-        }
+    //小标签
+    &.x-tag-small{
+      height: 26px;
+      .x-tag-inner{
+        line-height: 24px;
+      }
+      .x-tag-close{
+        line-height: 24px;
+      }
     }
-    &.x-tag-primary {
-        border-color: $color-primary;
-        color: $color-primary;
-        &.is-hover:hover{
-            color: $color-white;
-            background-color: $color-primary;
-        }
+    //超小标签
+    &.x-tag-mini{
+      height: 24px;
+      .x-tag-inner{
+        line-height: 22px;
+      }
+      .x-tag-close{
+        line-height: 22px;
+      }
     }
-    &.x-tag-warning {
-        border-color: $color-warning1;
-        color: $color-warning1;
-        &.is-hover:hover{
-            color: $color-white;
-            background-color: $color-warning1;
-        }
+    //端圆
+    &.x-tag-round{
+      border-radius: 18px;
     }
-    &.x-tag-danger {
-        border-color: $color-danger;
-        color: $color-danger;
-        &.is-hover:hover{
-            color: $color-white;
-            background-color: $color-danger;
-        }
+    //多色的
+    &.x-tag-colour{
+      height: 16px;
+      .x-tag-inner{
+        line-height: 16px;
+        padding: 0 4px;
+      }
+      .x-tag-close {
+        line-height: 16px;
+        padding-right: 4px;
+      }
     }
-    & .x-tag-close {
-        font-size: 12px;
+    //单色的
+    &.x-tag-sole{
+      .x-tag-bg{
+        opacity: 1;
+      }
     }
-}
+  }
