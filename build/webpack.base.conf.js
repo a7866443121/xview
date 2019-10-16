@@ -2,7 +2,6 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-const vueLoaderConfig = require('./vue-loader.conf')
 
 const MarkdownItContainer = require('markdown-it-container')
 const striptags = require('./strip-tags')
@@ -75,19 +74,29 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('examples'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: [resolve('examples'), resolve('test')],
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
-        options: vueLoaderConfig
+        options: {
+          transformAssetUrls: {
+            video: ['src', 'poster'],
+            source: 'src',
+            img: 'src',
+            image: 'xlink:href'
+          },
+          compilerOptions: {
+            preserveWhitespace: false
+          },
+        }
       },
       {
         test: /\.js$/,
